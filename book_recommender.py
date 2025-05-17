@@ -73,7 +73,9 @@ class Recommender:
             return []
 
     def _get_genre_preference(self):
-        
+        """this displays a list of available genres for the user to choose from and will loop until the user 
+        inputs a valid genre
+        """
         if not self.genres:
              print("\nError: No genres available to choose from. Cannot get preference.", file=sys.stderr)
              return None
@@ -89,6 +91,8 @@ class Recommender:
                 print(f"Invalid genre. Please choose from the list above.")
 
     def _get_length_preference(self):
+         """gets the users input for what length they'd like
+        """
         valid_lengths = ['short', 'average', 'long']
         while True:
             print("\nSelect book length preference:")
@@ -102,6 +106,11 @@ class Recommender:
                 print("Invalid input. Please enter 'short', 'average', or 'long'.")
 
     def find_recommendations(self, genre, length_preference):
+        """this picks books that matches the users input for genre and length 
+        args:
+        genre - the users genre perferred
+        length_preference - the users book_length
+        """
         recommended_books = []
         if not genre or not length_preference:
             return []
@@ -111,6 +120,11 @@ class Recommender:
         return recommended_books
 
     def display_recommendations(self, recommended_books):
+         """gives the user books that matches their perferences
+
+        Args:
+            recommended_books- a list of book dictionaries 
+        """
         print("\n--- Recommendations ---")
         if not recommended_books:
             print("No books found matching your criteria.")
@@ -121,6 +135,8 @@ class Recommender:
         print("---------------------")
 
     def run(self):
+        """runs the system
+        """
         print("Welcome to the Book Recommender!")
         genre = self._get_genre_preference()
         if genre is None:
