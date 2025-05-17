@@ -2,7 +2,16 @@ import csv
 import sys
 
 class Recommender:
+    """ 
+    this class gathers the data from the csv, takes in the users input for book reccomendations, and outputs
+    the results
+    """
     def __init__(self, csv_filepath='processed_books.csv'):
+         """starts the system
+
+        Args:
+            csv_filepath - path to the csv that stores the book data
+        """
         self.books = self._load_books(csv_filepath)
         if not self.books:
             print(f"Error: No books loaded from {csv_filepath}. Cannot proceed.", file=sys.stderr)
@@ -14,6 +23,12 @@ class Recommender:
              self.genres = []
 
     def _load_books(self, csv_filepath):
+        """loads the data from the csv and puts it into a list of dictionaries
+
+        Args:
+            csv_filepath - path to the csv that stores the book data
+
+        """
         books = []
         valid_lengths = {'short', 'average', 'long'}
         try:
@@ -58,6 +73,7 @@ class Recommender:
             return []
 
     def _get_genre_preference(self):
+        
         if not self.genres:
              print("\nError: No genres available to choose from. Cannot get preference.", file=sys.stderr)
              return None
